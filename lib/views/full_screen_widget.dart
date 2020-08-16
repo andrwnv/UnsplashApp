@@ -14,15 +14,22 @@ class FullScreenWidget extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppColors.PrimaryColor,
-        title: Center(child: Image.asset('assets/images/unsplash_logo.png')),
+        centerTitle: true,
+        title: Image.asset(
+            'assets/images/unsplash_logo.png',
+            scale: 8.5
+          ),
         leading: InkWell(
             child: Icon(Icons.arrow_back),
             onTap: () => Navigator.pop(context)
         ),
       ),
 
-      body: ImageCard(
-        image: _args
+      body: ListView(
+          children: <Widget>[ImageCard(
+            image: _args
+          )
+        ]
       )
     );
   }
