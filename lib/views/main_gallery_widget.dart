@@ -9,9 +9,8 @@ import 'package:unsplash_app/views/image_card.dart';
 import 'package:unsplash_app/misc/colors.dart';
 
 class GalleryWidget extends StatefulWidget {
-  GalleryWidget({Key key, this.title}) : super(key: key);
+  GalleryWidget({Key key}) : super(key: key);
 
-  final String title;
   static const String routeName = 'galleryWidget';
 
   @override
@@ -19,14 +18,13 @@ class GalleryWidget extends StatefulWidget {
 }
 
 class _GalleryWidget extends State<GalleryWidget> {
+  List<ImageCard> _imgs = <ImageCard>[];
   UnsplashAPI _api = UnsplashAPI();
-  int _pageNumber = 1;
-  int _countOfPictures = 10;
+
+  final int _countOfPictures = 10;
 
   bool _isLoading = true;
   bool _hasMore = true;
-
-  final List<ImageCard> _imgs = <ImageCard>[];
 
   @override
   void initState() {
@@ -37,9 +35,8 @@ class _GalleryWidget extends State<GalleryWidget> {
   }
 
   void _loadMore() {
-    _pageNumber += 1;
     _isLoading = true;
-    _api.getPictures(_pageNumber, _countOfPictures)
+    _api.getPictures(_countOfPictures)
         .then((List<UnsplashImage> fetchedList) {
       if (fetchedList.isEmpty) {
         setState(() {
@@ -86,7 +83,7 @@ class _GalleryWidget extends State<GalleryWidget> {
         backgroundColor: AppColors.PrimaryColor,
       ),
       body: FutureBuilder<List<UnsplashImage>>(
-        future: _api.getPictures(_pageNumber, _countOfPictures),
+        future: _api.getPictures(_countOfPictures),
         builder: (BuildContext context,
           AsyncSnapshot<List<UnsplashImage>> snapshot) {
             if (snapshot.hasError) {

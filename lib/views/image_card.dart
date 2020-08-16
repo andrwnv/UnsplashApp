@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:unsplash_app/misc/colors.dart';
 
 import 'package:unsplash_app/misc/interface_image.dart';
+import 'package:unsplash_app/misc/colors.dart';
 import 'full_screen_widget.dart';
 
 class ImageCard extends StatefulWidget {

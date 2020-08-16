@@ -34,16 +34,15 @@ class UnsplashAPI extends RestAPI {
   };
 
   Future<List<UnsplashImage>> getPictures(int count, [int page]) async {
-    final String url =
-        baseUrl + (page == null ? '/photos/random?count=$count' : 'photos?page=$page&per_page=$count');
+    final String url = baseUrl +
+        (page == null ? '/photos/random?count=$count' : 'photos?page=$page&per_page=$count');
 
     List<UnsplashImage> result = List();
 
-    final Object responseJSON = await this.get(url, _baseHeaders) as Iterable;
+    final Object responseJSON = await get(url, _baseHeaders) as Iterable;
 
-    for (var img in responseJSON) {
+    for (var img in responseJSON)
       result.add(UnsplashImage.fromJson(img));
-    }
 
     return result;
   }
