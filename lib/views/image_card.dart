@@ -36,10 +36,10 @@ class _ImageCard extends State<ImageCard> {
                   children: <Widget>[
                     ClipRRect(
                         borderRadius: BorderRadius.circular(100),
-                        child: Image.network(_image.authorAvatar, scale: 1.2)
+                        child: Image.network(_image.authorAvatar, scale: 1.6)
                     ),
                     Padding(
-                      padding: const EdgeInsets.all(18),
+                      padding: const EdgeInsets.all(10),
                       child: Text(
                         _image.authorName,
                         style: TextStyle(fontSize: 17),
