@@ -27,7 +27,7 @@ class UnsplashAPI extends RestAPI {
 
   factory UnsplashAPI() => _instance;
 
-  final _baseUrl = 'https://api.unsplash.com/';
+  static const baseUrl = 'https://api.unsplash.com/';
   final _baseHeaders = {
     'Accept-Version': 'v1',
     'Authorization': 'Client-ID bFiuoSh6h3VcmatVMLvvB33cPbS0mgWPSRAcwdnqs_M'
@@ -35,7 +35,7 @@ class UnsplashAPI extends RestAPI {
 
   Future<List<UnsplashImage>> getPictures(int count, [int page]) async {
     final String url =
-        _baseUrl + (page == null ? '/photos/random?count=$count' : 'photos?page=$page&per_page=$count');
+        baseUrl + (page == null ? '/photos/random?count=$count' : 'photos?page=$page&per_page=$count');
 
     List<UnsplashImage> result = List();
 
