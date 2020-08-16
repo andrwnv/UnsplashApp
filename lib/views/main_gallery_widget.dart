@@ -79,8 +79,8 @@ class _GalleryWidget extends State<GalleryWidget> {
     return Scaffold(
       appBar: AppBar(
         title: Image.asset(
-            'assets/images/unsplash_logo.png',
-            scale: 8.5
+          'assets/images/unsplash_logo.png',
+          scale: 8.5
         ),
         centerTitle: true,
         backgroundColor: AppColors.PrimaryColor,
@@ -90,23 +90,25 @@ class _GalleryWidget extends State<GalleryWidget> {
         builder: (BuildContext context,
           AsyncSnapshot<List<UnsplashImage>> snapshot) {
             if (snapshot.hasError) {
-              return _noConnectionWidget(snapshot.error);
+              return Center(child: _noConnectionWidget(snapshot.error));
             } else if (!snapshot.hasData) {
-              return Row(
-                children: <Widget>[
-                SizedBox(
-                  child: CircularProgressIndicator(
-                    valueColor: new AlwaysStoppedAnimation<Color>(AppColors.LoadingColor),
+              return Center(
+                child: Row(
+                  children: <Widget>[
+                  SizedBox(
+                    child: CircularProgressIndicator(
+                      valueColor: new AlwaysStoppedAnimation<Color>(AppColors.LoadingColor),
+                    ),
+                    width: 60,
+                    height: 60,
                   ),
-                  width: 60,
-                  height: 60,
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 16),
-                  child: Text('Awaiting result...'),
-                )
-              ]);
-            }
+                  Padding(
+                    padding: const EdgeInsets.only(top: 16),
+                    child: Text('Awaiting result...'),
+                  )
+                ]),
+              );
+          }
 
           return Center(
             child: ListView.builder(
